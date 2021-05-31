@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CabineRepository extends JpaRepository<CabineEntity, Long> {
+    CabineEntity findByTypeCabineContaining(String cabineName);
 }

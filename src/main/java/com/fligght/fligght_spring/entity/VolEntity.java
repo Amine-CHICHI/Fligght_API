@@ -1,5 +1,7 @@
 package com.fligght.fligght_spring.entity;
 
+import org.springframework.data.domain.Example;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -8,8 +10,8 @@ import java.sql.Time;
 @Entity
 @Table(name = "vol", schema = "fligght", catalog = "")
 public class VolEntity {
-    //    private Long id;
-    private Long idVol;
+
+    private Long id;
     private Date dateDepart;
     private Date dateArrivee;
     private Time heureDepart;
@@ -20,28 +22,19 @@ public class VolEntity {
     private AeroportEntity aeroportArrivee;
     private CabineEntity cabine;
 
-//    @Id
-//    @GeneratedValue
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     @Id
     @GeneratedValue
-    public Long getIdVol() {
-        return idVol;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdVol(Long idVol) {
-        this.idVol = idVol;
+    public void setId(Long idVol) {
+        this.id = idVol;
     }
 
     @Basic
-    @Column(name = "dateDepart", nullable = false)
+    @Column(name = "date_depart", nullable = false)
     public Date getDateDepart() {
         return dateDepart;
     }
@@ -51,7 +44,7 @@ public class VolEntity {
     }
 
     @Basic
-    @Column(name = "dateArrivee", nullable = false)
+    @Column(name = "date_arrivee", nullable = false)
     public Date getDateArrivee() {
         return dateArrivee;
     }
@@ -61,7 +54,7 @@ public class VolEntity {
     }
 
     @Basic
-    @Column(name = "heureDepart", nullable = false)
+    @Column(name = "heure_depart", nullable = false)
     public Time getHeureDepart() {
         return heureDepart;
     }
@@ -71,7 +64,7 @@ public class VolEntity {
     }
 
     @Basic
-    @Column(name = "heureArrivee", nullable = false)
+    @Column(name = "heure_arrivee", nullable = false)
     public Time getHeureArrivee() {
         return heureArrivee;
     }
@@ -100,32 +93,34 @@ public class VolEntity {
         this.isreservationavailable = isreservationavailable;
     }
     @ManyToOne
-    @JoinColumn(name = "Aeroport_idAeroportDepart", referencedColumnName = "idAeroport", nullable = false)
+    @JoinColumn(name = "aeroport_depart_id", referencedColumnName = "id_aeroport", nullable = false)
     public AeroportEntity getAeroportDepart() {
         return aeroportDepart;
     }
 
-    public void setAeroportDepart(AeroportEntity aeroportByAeroportIdAeroportDepart) {
-        this.aeroportDepart = aeroportByAeroportIdAeroportDepart;
+    public void setAeroportDepart(AeroportEntity AeroportDepart) {
+        this.aeroportDepart = AeroportDepart;
     }
 
     @ManyToOne
-    @JoinColumn(name = "Aeroport_idAeroportArrivee", referencedColumnName = "idAeroport", nullable = false)
+    @JoinColumn(name = "aeroport_arrivee_id", referencedColumnName = "id_aeroport", nullable = false)
     public AeroportEntity getAeroportArrivee() {
         return aeroportArrivee;
     }
 
-    public void setAeroportArrivee(AeroportEntity aeroportByAeroportIdAeroportArrivee) {
-        this.aeroportArrivee = aeroportByAeroportIdAeroportArrivee;
+    public void setAeroportArrivee(AeroportEntity AeroportArrivee) {
+        this.aeroportArrivee = AeroportArrivee;
     }
 
     @ManyToOne
-    @JoinColumn(name = "Cabine_idCabine", nullable = false)
-    public CabineEntity getCabineByCabineIdCabine() {
+    @JoinColumn(name = "cabine_id", referencedColumnName = "id_cabine",nullable = false)
+    public CabineEntity getCabine() {
         return cabine;
     }
 
-    public void setCabineByCabineIdCabine(CabineEntity cabineByCabineIdCabine) {
-        this.cabine = cabineByCabineIdCabine;
+    public void setCabine(CabineEntity Cabine) {
+        this.cabine = Cabine;
     }
+
+
 }

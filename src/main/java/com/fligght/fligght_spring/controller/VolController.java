@@ -5,7 +5,6 @@ import com.fligght.fligght_spring.service.VolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,12 +15,12 @@ public class VolController {
     private VolService volService;
 
     @GetMapping("/vols")
-    public List<VolDto> getVols(){
+    public List<VolDto> getVols() {
         return volService.findFlights();
     }
 
     @PostMapping("/vols")
-    public List<VolDto> getVolPreference(@RequestBody VolDto volDto){
+    public List<VolDto> getVolPreference(@RequestBody VolDto volDto) {
 
         return volService.getRelevantFlights(volDto);
     }
