@@ -7,5 +7,4 @@ import java.util.List;
 public interface VolService {
     List<VolDto> findFlights();
     List<VolDto> getRelevantFlights(VolDto volDto);
-
 }
